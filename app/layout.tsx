@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { SITE } from '@/lib/site-config';
+import { LeadWidget } from '@/components/lead-widget';
 import './globals.css';
 
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        <LeadWidget />
       </body>
     </html>
   );
