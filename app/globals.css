@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+
+  --color-steel: #1a2332;
+  --color-steel-light: #243044;
+  --color-forge-red: #C4302B;
+  --color-forge-dk: #9B2520;
+  --color-iron: #374151;
+  --color-concrete: #F3F4F6;
+  --color-cream: #FAFAF7;
+  --color-sand: #E5E7EB;
+  --color-success: #16A34A;
+
+  --shadow-soft: 0 4px 24px -8px rgba(26,35,50,0.12);
+  --shadow-lift: 0 12px 40px -12px rgba(26,35,50,0.20);
+}
+
+:root {
+  --background: #FAFAF7;
+  --foreground: #1a2332;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gallery hover zoom */
+.gallery-card img {
+  transition: transform 0.5s ease;
+}
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Reviews marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
