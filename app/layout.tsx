@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import Script from 'next/script';
 import { SITE } from '@/lib/site-config';
-import { LeadWidget } from '@/components/lead-widget';
 import './globals.css';
 
 const inter = Inter({
@@ -38,7 +38,13 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
-        <LeadWidget />
+        <Script
+          id="ghl-chat-widget"
+          src="https://widgets.leadconnectorhq.com/loader.js"
+          data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"
+          data-widget-id="67ddf0a80d1911aaceb3e991"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

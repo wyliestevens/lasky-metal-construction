@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { SITE } from '@/lib/site-config';
 import { reviews, aggregateRating } from '@/lib/reviews-data';
+import { DemoForm } from '@/components/demo-form';
 
 /* ──────────────────────────── SERVICES DATA ──────────────────────────── */
 const services = [
@@ -121,12 +122,11 @@ export default function Home() {
             <a href="#contact" className="transition-colors hover:text-forge-red">Contact</a>
           </nav>
           <a
-            href={`mailto:${SITE.email}`}
+            href="#contact"
             className="hidden rounded-lg bg-forge-red px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:bg-forge-dk md:inline-block"
           >
             Get a Free Estimate
           </a>
-          {/* Mobile menu button */}
           <a href="#contact" className="rounded-lg bg-forge-red px-4 py-2 text-sm font-bold text-white md:hidden">
             Contact
           </a>
@@ -134,46 +134,52 @@ export default function Home() {
       </header>
 
       <main id="main-content">
-        {/* ===== HERO ===== */}
-        <section className="relative overflow-hidden bg-steel px-6 py-20 md:py-32">
-          <div className="absolute inset-0 opacity-20">
+        {/* ===== HERO (Two-column: headline left, form right) ===== */}
+        <section className="relative overflow-hidden bg-steel px-6 py-16 md:py-24">
+          <div className="absolute inset-0 opacity-15">
             <Image src="/img/commercial-2.jpg" alt="" fill className="object-cover" priority />
           </div>
-          <div className="relative mx-auto max-w-5xl text-center">
-            <h1 className="text-4xl font-extrabold leading-tight text-white md:text-6xl md:leading-tight">
-              Metal Buildings Built to Last
-            </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-gray-300 md:text-xl">
-              Commercial, agricultural, and residential steel construction across Arkansas and Oklahoma. Quality craftsmanship from a crew that takes pride in every build.
-            </p>
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
+            {/* Left column: headline & copy */}
+            <div>
+              <Image
+                src="/img/logo.jpg"
+                alt="Lasky Metal Construction"
+                width={160}
+                height={160}
+                className="mb-6 h-auto w-32 rounded-lg md:w-40"
+                priority
+              />
+              <h1 className="text-3xl font-extrabold leading-tight text-white md:text-5xl md:leading-tight">
+                Metal Buildings Built to Last
+              </h1>
+              <p className="mt-6 max-w-lg text-lg text-gray-300 md:text-xl">
+                Commercial, agricultural, and residential steel construction across Arkansas and Oklahoma. Quality craftsmanship from a crew that takes pride in every build.
+              </p>
               <a
-                href={`mailto:${SITE.email}`}
-                className="inline-block rounded-lg bg-forge-red px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:bg-forge-dk hover:shadow-xl"
+                href="#services"
+                className="mt-8 inline-block rounded-lg bg-forge-red px-8 py-4 text-lg font-bold text-white shadow-lg transition hover:bg-forge-dk hover:shadow-xl"
               >
-                Get a Free Estimate
+                See Our Services
               </a>
-              <a
-                href="#gallery"
-                className="inline-block rounded-lg border-2 border-white/30 px-8 py-4 text-lg font-bold text-white transition hover:border-white hover:bg-white/10"
-              >
-                See Our Work
-              </a>
-            </div>
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-300">
-              <div className="flex items-center gap-2">
-                <span className="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-                <span>{aggregateRating.value} / 5.0</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-forge-red font-bold">&#9670;</span>
-                <span>Fully Licensed & Insured</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-forge-red font-bold">&#9670;</span>
-                <span>Free Estimates</span>
+              <div className="mt-8 flex flex-wrap items-center gap-6 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                  <span className="text-yellow-400">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                  <span>{aggregateRating.value} / 5.0</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-forge-red font-bold">&#9670;</span>
+                  <span>Licensed & Insured</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-forge-red font-bold">&#9670;</span>
+                  <span>Free Estimates</span>
+                </div>
               </div>
             </div>
+
+            {/* Right column: demo form */}
+            <DemoForm source="hero" />
           </div>
         </section>
 
@@ -285,20 +291,49 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== ABOUT ===== */}
-        <section id="about" className="bg-steel px-6 py-20 md:py-28">
-          <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
+        {/* ===== MID-PAGE CTA + FORM ===== */}
+        <section className="bg-steel px-6 py-20 md:py-28">
+          <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2 md:gap-16">
             <div>
               <h2 className="text-3xl font-bold text-white md:text-4xl">
-                Meet Jose
+                Ready to Talk About Your Project?
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-gray-300">
+                Fill out the form and our AI assistant will call you in about 60 seconds to discuss your metal building project. No waiting on hold, no phone tag.
+              </p>
+              <ul className="mt-6 space-y-3 text-gray-300">
+                <li className="flex items-center gap-3">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forge-red text-xs font-bold text-white">&#10003;</span>
+                  Free estimates on all projects
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forge-red text-xs font-bold text-white">&#10003;</span>
+                  Owner on every job site
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-forge-red text-xs font-bold text-white">&#10003;</span>
+                  Serving AR, OK & SW Missouri
+                </li>
+              </ul>
+            </div>
+            <DemoForm source="mid-page" />
+          </div>
+        </section>
+
+        {/* ===== ABOUT ===== */}
+        <section id="about" className="bg-white px-6 py-20 md:py-28">
+          <div className="mx-auto grid max-w-5xl items-center gap-12 md:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-bold text-steel md:text-4xl">
+                Meet Jose
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-gray-600">
                 Jose Gonzalez Rosas founded Lasky Metal Construction with a simple mission: build metal structures the right way, every time. With hands-on experience in every aspect of steel construction, Jose leads his crew from the front, not from behind a desk.
               </p>
-              <p className="mt-4 leading-relaxed text-gray-300">
+              <p className="mt-4 leading-relaxed text-gray-600">
                 From commercial warehouses and storage facilities to barndominiums and specialty buildings like car washes, Jose and his team have earned a reputation for quality work, honest timelines, and fair pricing across Northwest Arkansas and Northeast Oklahoma.
               </p>
-              <p className="mt-4 leading-relaxed text-gray-300">
+              <p className="mt-4 leading-relaxed text-gray-600">
                 When you work with Lasky Metal Construction, you work directly with the owner. No middlemen, no runaround.
               </p>
             </div>
@@ -391,7 +426,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ===== CONTACT / CTA ===== */}
+        {/* ===== CONTACT / FINAL CTA ===== */}
         <section id="contact" className="bg-steel px-6 py-20 md:py-28">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold text-white md:text-4xl">
@@ -425,7 +460,6 @@ export default function Home() {
       <footer className="bg-steel-light px-6 py-10">
         <div className="mx-auto max-w-6xl">
           <div className="grid gap-10 md:grid-cols-3">
-            {/* Brand */}
             <div>
               <a href="/" className="flex items-center gap-3">
                 <Image src="/img/logo.jpg" alt="Lasky Metal Construction" width={40} height={40} className="rounded" />
@@ -438,7 +472,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Services */}
             <div>
               <h4 className="text-sm font-semibold text-white">Services</h4>
               <ul className="mt-4 space-y-2 text-sm text-gray-400">
@@ -451,7 +484,6 @@ export default function Home() {
               </ul>
             </div>
 
-            {/* Contact */}
             <div>
               <h4 className="text-sm font-semibold text-white">Contact</h4>
               <ul className="mt-4 space-y-2 text-sm text-gray-400">
